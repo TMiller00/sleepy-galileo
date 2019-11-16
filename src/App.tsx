@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
 import Form, { Context, ContextType } from './Form'
-import './App.css';
+import { Box, Grommet, Heading } from 'grommet'
+import theme from './theme'
 
 const ListTracks: React.FC = () => {
-  const context = useContext(Context) as ContextType
+  const context = (useContext(Context) as ContextType)
   const { data } = context
 
   return (
@@ -25,13 +26,36 @@ const InsertTrack: React.FC = () => {
   )
 }
 
+const Header = (props: any) => (
+   <Box
+     tag='header'
+     direction='row'
+     align='center'
+     justify='between'
+     background='blue'
+     pad={{ left: 'medium', right: 'small', vertical: 'small' }}
+     style={{ zIndex: '1' }}
+     {...props}
+   />
+)
 const App: React.FC = () => {
   return (
-    <Form>
-      <InsertTrack/>
-      <ListTracks/>
-    </Form>
+    <Grommet theme={theme} full>
+      <Form>
+        <Header>
+          <Heading level={3} color='white' margin='none'>
+            Sleepy Galileo
+          </Heading>
+        </Header>
+        <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
+          <Box flex align='center' justify='center'>
+            <InsertTrack/>
+            <ListTracks/>
+          </Box>
+        </Box>
+      </Form>
+    </Grommet>
   )
 }
 
-export default App;
+export default App
