@@ -2,21 +2,34 @@ import React, { useContext } from 'react';
 import Form, { Context, ContextType } from './Form'
 import './App.css';
 
-const TrackList: React.FC = () => {
+const ListTracks: React.FC = () => {
   const context = useContext(Context) as ContextType
   const { data } = context
 
   return (
-    <>
-      { data && data.map((c: any, i: number) => <p key={i}>{ c.url }</p>) }
-    </>
+    <ul>
+      { data && data.map((c: any) => (<li key={c.url}>{ c.url }</li>)) }
+    </ul>
+  )
+}
+
+const InsertTrack: React.FC = () => {
+  const context = useContext(Context) as ContextType
+  const { onSubmit } = context
+
+  return (
+    <form onSubmit={onSubmit}>
+      <input type='text' placeholder='Enter a track url' />
+      <button type='submit'>Add a track</button>
+    </form>
   )
 }
 
 const App: React.FC = () => {
   return (
     <Form>
-      <TrackList/>
+      <InsertTrack/>
+      <ListTracks/>
     </Form>
   )
 }
