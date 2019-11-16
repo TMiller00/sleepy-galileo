@@ -3,17 +3,16 @@ import songSchema, { SongType } from './Schema'
 
 RxDB.plugin(require('pouchdb-adapter-idb'))
 
-type SongCollection = RxCollection<SongType, {}>
+export type SongCollection = RxCollection<SongType, {}>
 
-type DatabaseCollections = {
+export type DatabaseCollections = {
   songs: SongCollection
 }
 
-type DatabaseType = RxDatabase<DatabaseCollections>
-
+export type DatabaseType = RxDatabase<DatabaseCollections>
 
 class Database {
-  databasePromise: any
+  private databasePromise: Promise<DatabaseType> | null
 
   constructor() {
     this.databasePromise = null
@@ -24,10 +23,6 @@ class Database {
       const db: DatabaseType = await RxDB.create<DatabaseCollections>({
         name: 'songsdb',
         adapter: 'idb'
-      })
-
-      db.waitForLeadership().then(() => {
-        document.title = '♛'
       })
 
       db.collection({
