@@ -1,22 +1,23 @@
-import React from 'react';
-import Database from './Database'
-import Schema from './Schema'
+import React, { useContext } from 'react';
+import Form, { Context, ContextType } from './Form'
 import './App.css';
 
-const App: React.FC = () => {
-  const test = async () => {
-    const db = await Database()
-    const collections = await db.collection({ name: 'songs', schema: Schema })
-
-    collections.insert({ url: 'google.com' })
-    collections.find().exec().then(documents => console.dir(documents));
-  }
-
-  test()
+const TrackList: React.FC = () => {
+  const context = useContext(Context) as ContextType
+  const { data } = context
 
   return (
-    <div className="App">
-    </div>
+    <>
+      { data && data.map((c: any, i: number) => <p key={i}>{ c.url }</p>) }
+    </>
+  )
+}
+
+const App: React.FC = () => {
+  return (
+    <Form>
+      <TrackList/>
+    </Form>
   )
 }
 
