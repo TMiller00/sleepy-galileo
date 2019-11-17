@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from '../Form'
-import { Form, FormField, Button, TextInput } from 'grommet'
+import { Box, Form, FormField, Button, TextInput } from 'grommet'
+import { Add } from 'grommet-icons'
 
 const InsertTrack: React.FC = () => {
   const context = useContext(Context) as ContextType
@@ -8,10 +9,13 @@ const InsertTrack: React.FC = () => {
 
   return (
     <Form onSubmit={onSubmit}>
-      <FormField name='url' label='Url'>
-        <TextInput placeholder='type here' />
-      </FormField>
-      <Button type='submit' primary label='Add'/>
+      <Box direction='row' margin={{ bottom: 'small' }} align='center'>
+        <FormField name='track' label='Url' placeholder='Enter a url'/>
+        <Button
+          type='submit'
+          icon={<Add/>}
+        />
+      </Box>
     </Form>
   )
 }
