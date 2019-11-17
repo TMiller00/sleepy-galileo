@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import Form, { Context, ContextType } from './Form'
+import React from 'react'
+import Form from './Form'
 import { InsertTrack, ListTracks } from './Components'
 import { Box, Grommet, Heading } from 'grommet'
 import theme from './theme'
@@ -17,26 +17,22 @@ const Header = (props: any) => (
    />
 )
 
-//<iframe src="https://open.spotify.com/embed/track/6K8zRwaiHUv93In5P0TPwT" width="300" height="80" frameBorder="0" allowTransparency={true} allow="encrypted-media"/>
-
-const App: React.FC = () => {
-  return (
-    <Grommet theme={theme} full>
-      <Form>
-        <Header>
-          <Heading level={3} color='white' margin='none'>
-            Sleepy Galileo
-          </Heading>
-        </Header>
-        <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
-          <Box flex align='center' justify='center'>
-            <InsertTrack/>
-            <ListTracks/>
-          </Box>
+const App: React.FC = () => (
+  <Grommet theme={theme} full>
+    <Form>
+      <Header>
+        <Heading level={3} color='white' margin='none'>
+          Sleepy Galileo
+        </Heading>
+      </Header>
+      <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
+        <Box flex align='center' justify='center'>
+          <InsertTrack/>
+          <ListTracks/>
         </Box>
-      </Form>
-    </Grommet>
-  )
-}
+      </Box>
+    </Form>
+  </Grommet>
+)
 
 export default App

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from '../Form'
-import { Box, Form, FormField, Button, TextInput } from 'grommet'
+import { Box, Button, Form, FormField } from 'grommet'
 import { Add } from 'grommet-icons'
 
 const InsertTrack: React.FC = () => {
