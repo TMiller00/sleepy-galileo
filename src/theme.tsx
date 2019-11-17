@@ -7,7 +7,7 @@ const theme = {
       red: '#ac2b1a',
     },
     font: {
-      family: 'Roboto',
+      family: 'Archivo',
       size: '18px',
       height: '20px',
     }

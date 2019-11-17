@@ -1,30 +1,8 @@
 import React, { useContext } from 'react'
 import Form, { Context, ContextType } from './Form'
+import { InsertTrack, ListTracks } from './Components'
 import { Box, Grommet, Heading } from 'grommet'
 import theme from './theme'
-
-const ListTracks: React.FC = () => {
-  const context = (useContext(Context) as ContextType)
-  const { data } = context
-
-  return (
-    <ul>
-      { data && data.map((c: any) => (<li key={c.url}>{ c.url }</li>)) }
-    </ul>
-  )
-}
-
-const InsertTrack: React.FC = () => {
-  const context = useContext(Context) as ContextType
-  const { onSubmit } = context
-
-  return (
-    <form onSubmit={onSubmit}>
-      <input type='text' placeholder='Enter a track url' />
-      <button type='submit'>Add a track</button>
-    </form>
-  )
-}
 
 const Header = (props: any) => (
    <Box
@@ -38,6 +16,9 @@ const Header = (props: any) => (
      {...props}
    />
 )
+
+//<iframe src="https://open.spotify.com/embed/track/6K8zRwaiHUv93In5P0TPwT" width="300" height="80" frameBorder="0" allowTransparency={true} allow="encrypted-media"/>
+
 const App: React.FC = () => {
   return (
     <Grommet theme={theme} full>
