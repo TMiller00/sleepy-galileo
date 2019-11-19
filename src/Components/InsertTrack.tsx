@@ -10,7 +10,7 @@ const InsertTrack: React.FC = () => {
   return (
     <Form onSubmit={onSubmit}>
       <Box direction='row' margin={{ bottom: 'small' }} align='center'>
-        <FormField name='track' label='Url' placeholder='Enter a url'/>
+        <FormField name='track' label='Track' placeholder='Enter a Spotify URL'/>
         <Button
           type='submit'
           icon={<Add/>}
@@ -21,5 +21,3 @@ const InsertTrack: React.FC = () => {
 }
 
 export default InsertTrack
-
-

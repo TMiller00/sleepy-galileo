@@ -10,6 +10,14 @@ export type ContextType = {
 
 export const Context = React.createContext({})
 
+type Value = {
+  track: string
+}
+type Submit = {
+  value: Value
+  target: HTMLFormElement
+}
+
 const Form: React.FC = (props) => {
   const { children } = props
   const [data, setData] = useState()
@@ -18,7 +26,8 @@ const Form: React.FC = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const db = await database.current.get()
-      db.songs.find().sort({ createdAt: 1 }).$.subscribe((songs: any) => {
+      db.songs.find().sort({ createdAt: 1 }).$.subscribe((songs: any[]) => {
+        console.log(songs)
         if (!songs) { return }
         setData(songs)
       })
@@ -27,13 +36,13 @@ const Form: React.FC = (props) => {
     fetchData()
   }, [])
 
-  const onSubmit = async ({ value, target }: any) => {
+  const onSubmit = async (props: Submit) => {
     const db = await database.current.get()
-    db.songs.insert({ url: value.track, createdAt: Date.now() })
-    target.reset()
+    db.songs.insert({ url: props.value.track, createdAt: Date.now() })
+    props.target.reset()
   }
 
-  const onClick = async (value: any) => {
+  const onClick = async (value: string) => {
     const db = await database.current.get()
     const query = db.songs.find({ url: { $eq: value }})
     await query.remove()

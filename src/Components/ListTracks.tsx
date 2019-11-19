@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Context, ContextType } from '../Form'
-import Track from './Track'
+import Track, { Item } from './Track'
 import { List } from 'grommet'
 
 const ListTracks: React.FC = () => {
@@ -11,7 +11,7 @@ const ListTracks: React.FC = () => {
     <List
       primaryKey='url'
       data={data}
-      children={(item: any, index: number) => (<Track key={index} item={item}/>)}
+      children={(item: Item, index: number) => (<Track key={index} item={item}/>)}
     />
   )
 }

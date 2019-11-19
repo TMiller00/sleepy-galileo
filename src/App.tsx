@@ -1,10 +1,10 @@
 import React from 'react'
 import Form from './Form'
 import { InsertTrack, ListTracks } from './Components'
-import { Box, Grommet, Heading } from 'grommet'
+import { Box, BoxTypes, Grommet, Heading } from 'grommet'
 import theme from './theme'
 
-const Header = (props: any) => (
+const Header = (props: BoxTypes) => (
    <Box
      tag='header'
      direction='row'
@@ -12,7 +12,6 @@ const Header = (props: any) => (
      justify='between'
      background='blue'
      pad={{ left: 'medium', right: 'small', vertical: 'small' }}
-     style={{ zIndex: '1' }}
      {...props}
    />
 )

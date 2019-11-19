@@ -3,10 +3,14 @@ import { Context, ContextType } from '../Form'
 import { Box, Button } from 'grommet'
 import { Close } from 'grommet-icons'
 import parse from 'html-react-parser'
+import { RxDocument } from 'rxdb'
 
+export type Item = RxDocument & {
+  url: string
+}
 type Props = {
   key: number
-  item: any
+  item: Item
 }
 
 const Track: React.FC<Props> = (props) => {
