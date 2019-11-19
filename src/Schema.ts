@@ -1,7 +1,8 @@
 import { RxJsonSchema } from 'rxdb'
 
 export type SongType = {
-  url: string
+  url: string,
+  createdAt: number
 }
 
 const songSchema: RxJsonSchema<SongType> = {
@@ -13,6 +14,10 @@ const songSchema: RxJsonSchema<SongType> = {
     'url': {
       'type': 'string',
       'primary': true
+    },
+    'createdAt': {
+      'type': 'number',
+      'index': true
     }
   },
   'required': ['url']

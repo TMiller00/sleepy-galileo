@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, SyntheticEvent } from 'react'
-import { RxDocument } from 'rxdb'
+import RxDB, { RxDocument } from 'rxdb'
 import Database from '../Database'
-import Schema from '../Schema'
 
 export type ContextType = {
   data: RxDocument[],
@@ -18,9 +17,9 @@ const Form: React.FC = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      //RxDB.removeDatabase('songsdb', 'idb');
       const db = await database.current.get()
-      await db.collection({ name: 'songs', schema: Schema })
-      db.songs.find().$.subscribe((songs: any) => {
+      db.songs.find().sort({ createdAt: 1 }).$.subscribe((songs: any) => {
         if (!songs) { return }
         setData(songs)
       })
@@ -31,7 +30,7 @@ const Form: React.FC = (props) => {
 
   const onSubmit = async ({ value, target }: any) => {
     const db = await database.current.get()
-    db.songs.insert({ url: value.track })
+    db.songs.insert({ url: value.track, createdAt: Date.now() })
     target.reset()
   }
 

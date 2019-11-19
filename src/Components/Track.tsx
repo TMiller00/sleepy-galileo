@@ -2,13 +2,12 @@ import React, { useContext } from 'react'
 import { Context, ContextType } from '../Form'
 import { Box, Button } from 'grommet'
 import { Close } from 'grommet-icons'
+import parse from 'html-react-parser'
 
 type Props = {
   key: number
   item: any
 }
-
-//<iframe src="https://open.spotify.com/embed/track/6K8zRwaiHUv93In5P0TPwT" width="300" height="80" frameBorder="0" allowTransparency={true} allow="encrypted-media"/>
 
 const Track: React.FC<Props> = (props) => {
   const context = (useContext(Context) as ContextType)
@@ -22,7 +21,7 @@ const Track: React.FC<Props> = (props) => {
         icon={<Close/>}
         onClick={() => onClick(item.url)}
       />
-        { item.url }
+        { parse(JSON.parse(item.url)) }
     </Box>
   )
 }
