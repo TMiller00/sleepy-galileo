@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, SyntheticEvent } from 'react'
-import RxDB, { RxDocument } from 'rxdb'
+import { RxDocument } from 'rxdb'
 import Database from '../Database'
 
 export type ContextType = {
@@ -17,7 +17,6 @@ const Form: React.FC = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      //RxDB.removeDatabase('songsdb', 'idb');
       const db = await database.current.get()
       db.songs.find().sort({ createdAt: 1 }).$.subscribe((songs: any) => {
         if (!songs) { return }

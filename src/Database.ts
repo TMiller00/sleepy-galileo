@@ -22,6 +22,10 @@ const buildSpotifyUrl = (id: string) => {
   return JSON.stringify(`<iframe src='//open.spotify.com/embed/track/${id}' width="300" height="80" frameBorder="0" allow="encrypted-media">`)
 }
 
+const buildErrorHandler = () => {
+  return JSON.stringify('<div>Oops! Something went wrong!</div>')
+}
+
 class Database {
   private databasePromise: Promise<DatabaseType> | null
 
@@ -40,19 +44,13 @@ class Database {
 
       db.collections.songs.preInsert((document: SongType) => {
         const regex = /https:\/\/open\.spotify\.com\/track\/([A-Za-z0-9]+){1}/
-        const { url } = document
+        const id = regex.exec(document.url)
 
-        if (regex.test(url)) {
-          const id = regex.exec(url)
-
-          if (id && id[1]) {
-            const temp = id && id[1]
-            document.url = buildSpotifyUrl(temp)
-          } else {
-            throw new Error('Invalid URL')
-          }
+        if (id) {
+          document.url = buildSpotifyUrl(id[1])
+        } else {
+          document.url = buildErrorHandler()
         }
-
       }, true)
 
       return db
