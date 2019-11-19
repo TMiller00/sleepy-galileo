@@ -27,7 +27,6 @@ const Form: React.FC = (props) => {
     const fetchData = async () => {
       const db = await database.current.get()
       db.songs.find().sort({ createdAt: 1 }).$.subscribe((songs: any[]) => {
-        console.log(songs)
         if (!songs) { return }
         setData(songs)
       })
