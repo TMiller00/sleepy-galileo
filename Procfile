@@ -1,1 +1,1 @@
-web: bin/boot
+web: yarn global add serve && serve -s build
